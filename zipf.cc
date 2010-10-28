@@ -4,16 +4,17 @@
 #include <ctype.h>
 #include <string>
 #include <map>
+#include <list>
 
 using namespace std;
 
-map<string, int> freq;
+map<string, int> freq_map;
 string current_word;
 bool in_word = false;
 
 void add_word() {
     if (in_word) {
-	freq[current_word]++;
+	freq_map[current_word]++;
 	in_word = false;
     }
 }
@@ -36,12 +37,24 @@ void read_words() {
     add_word();
 }
 
+bool count_compare(pair<string, int> fc1, pair<string, int> fc2) {
+    return fc1.second < fc2.second;
+}
+
 void show_freqs() {
-    map<string, int>::iterator it;
-    for (it = freq.begin(); it != freq.end(); it++) {
-	const char *w = it->first.c_str();
-	int c = it->second;
-	printf("%s %d\n", w, c);
+    /* sort the frequencies */
+    map<string, int>::iterator itm;
+    list< pair<string, int> > freq_list;
+    for (itm = freq_map.begin(); itm != freq_map.end(); itm++)
+	freq_list.push_back(*itm);
+    freq_list.sort(count_compare);
+    /* actually show the calculation */
+    int i = freq_list.size();
+    list< pair<string, int> >::iterator itp;
+    for (itp = freq_list.begin(); itp != freq_list.end(); itp++) {
+	const char *w = itp->first.c_str();
+	int c = itp->second;
+	printf("%g %d\n", 1.0 / i--, c);
     }
 }
 
