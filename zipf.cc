@@ -1,5 +1,10 @@
 // Copyright © 2010 Bart Massey
 // Illustration of "Zipf's Law"
+
+// This program is released under the terms of the "MIT
+// License".  Please see the file COPYING in this
+// distribution for license details.
+
 #include <stdio.h>
 #include <ctype.h>
 #include <string>
