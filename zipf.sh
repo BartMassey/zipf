@@ -6,7 +6,7 @@
 # License".  Please see the file COPYING in this
 # distribution for license details.
 
-tr -c a-zA-Z0-9 '\n' |
+tr -c a-zA-Z '\n' |
 grep -v '^$' |
 tr A-Z a-z | 
 sort |
