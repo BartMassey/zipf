@@ -5,41 +5,44 @@
 // License".  Please see the file COPYING in this
 // distribution for license details.
 
-#include <stdio.h>
 #include <ctype.h>
-#include <string>
-#include <map>
+#include <stdio.h>
+
 #include <list>
+#include <map>
+#include <string>
 
 using namespace std;
 
-map<string, int> freq_map;
+map <string, int> freq_map;
 string current_word;
 bool in_word = false;
 
-void add_word() {
-    if (in_word) {
-	freq_map[current_word]++;
-	in_word = false;
-    }
-}
-
-void read_words() {
-    int ch;
-    while ((ch = getchar()) != EOF) {
-	if (isalpha(ch)) {
-	    char chl = tolower(ch);
-	    if (!in_word) {
-		current_word = string(1, chl);
-		in_word = true;
-	    } else {
-		current_word += chl;
-	    }
-	    continue;
-	}
-	add_word();
-    }
-    add_word();
+// Count the alphabetic words on the input into the frequency map.
+void
+count_words()
+{
+    int    ch;
+    bool   in_word = false;
+    string current_word;
+    do {
+        ch = getchar();
+        if (isascii(ch) && isalpha(ch)) {
+            if (in_word) {
+                current_word += tolower(ch);
+            } else {
+                current_word = string(1, tolower(ch));
+                in_word = true;
+            }
+        } else {
+            if (in_word) {
+                freq_map[current_word]++;
+                in_word = false;
+            } else {
+                /* do nothing */
+            }
+        }
+    } while (ch != EOF);
 }
 
 bool count_compare(pair<string, int> fc1, pair<string, int> fc2) {
@@ -57,7 +60,6 @@ void show_freqs() {
     int i = freq_list.size();
     list< pair<string, int> >::iterator itp;
     for (itp = freq_list.begin(); itp != freq_list.end(); itp++) {
-	const char *w = itp->first.c_str();
 	int c = itp->second;
 	printf("%g %d\n", 1.0 / i--, c);
     }
@@ -65,7 +67,7 @@ void show_freqs() {
 
 int main ()
 {
-    read_words();
+    count_words();
     show_freqs();
     return 0;
 }
