@@ -15,8 +15,6 @@
 using namespace std;
 
 map <string, int> freq_map;
-string current_word;
-bool in_word = false;
 
 // Count the alphabetic words on the input into the frequency map.
 void
