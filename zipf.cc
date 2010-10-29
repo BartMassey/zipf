@@ -43,24 +43,18 @@ count_words()
     } while (ch != EOF);
 }
 
-bool count_compare(pair<string, int> fc1, pair<string, int> fc2) {
-    return fc1.second < fc2.second;
-}
-
 void show_freqs() {
     /* sort the frequencies */
-    map<string, int>::iterator itm;
-    list< pair<string, int> > freq_list;
+    map <string, int>::iterator itm;
+    list <int> freq_list;
     for (itm = freq_map.begin(); itm != freq_map.end(); itm++)
-	freq_list.push_back(*itm);
-    freq_list.sort(count_compare);
+	freq_list.push_back(itm->second);
+    freq_list.sort();
     /* actually show the calculation */
     int i = freq_list.size();
-    list< pair<string, int> >::iterator itp;
-    for (itp = freq_list.begin(); itp != freq_list.end(); itp++) {
-	int c = itp->second;
-	printf("%g %d\n", 1.0 / i--, c);
-    }
+    list <int>::iterator itp;
+    for (itp = freq_list.begin(); itp != freq_list.end(); itp++)
+	printf("%g %d\n", 1.0 / i--, *itp);
 }
 
 int main ()
