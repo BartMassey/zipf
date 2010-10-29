@@ -43,10 +43,12 @@ count_words()
     } while (ch != EOF);
 }
 
-void show_freqs() {
+void
+show_freqs()
+{
     /* sort the frequencies */
     map <string, int>::iterator itm;
-    list <int> freq_list;
+    list <int>                  freq_list;
     for (itm = freq_map.begin(); itm != freq_map.end(); itm++)
 	freq_list.push_back(itm->second);
     freq_list.sort();
@@ -57,7 +59,8 @@ void show_freqs() {
 	printf("%g %d\n", 1.0 / i--, *itp);
 }
 
-int main ()
+int
+main ()
 {
     count_words();
     show_freqs();
