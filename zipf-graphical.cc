@@ -59,7 +59,7 @@ show_freqs()
     plinit();
     int nfreq = freq_list.size();
     plenv(0.0, 1.0, 0.0, (PLFLT)nfreq, 0, 1);
-    pllab("inv rank", "freq", 0);
+    pllab("inv rank", "freq", "");
     // Perform the Zipf calculation.
     list <int>::iterator itp;
     PLFLT *              xs = new PLFLT[nfreq];
@@ -77,8 +77,11 @@ show_freqs()
 }
 
 int
-main ()
+main (int argc, const char **argv)
 {
+    plsdev("xwin");
+    plparseopts(&argc, argv, PL_PARSE_FULL | PL_PARSE_NODASH);
+    plspause(1);
     count_words();
     show_freqs();
     return 0;
