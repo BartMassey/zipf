@@ -58,8 +58,10 @@ show_freqs()
     // Set up PLplot.
     plinit();
     int nfreq = freq_list.size();
+    plcol0(9);
     plenv(0.0, 1.0, 0.0, (PLFLT)nfreq, 0, 1);
-    pllab("inv rank", "freq", "");
+    plcol0(7);
+    pllab("1/rank", "count", "Zipf's Law");
     // Perform the Zipf calculation.
     list <int>::iterator itp;
     PLFLT *              xs = new PLFLT[nfreq];
@@ -72,7 +74,8 @@ show_freqs()
 	i++;
     }
     // Display the result.
-    plpoin(nfreq, xs, ys, 'x');
+    plcol0(2);
+    plpoin(nfreq, xs, ys, 1);
     plend();
 }
 
