@@ -10,8 +10,8 @@
 -----------------------------------------------------------------------------
 
 import System.Environment
-import List
-import Char
+import Data.List
+import Data.Char
 import qualified Data.Map as Map
 
 -- |Simultaneously lowercase chars and turn all non-alpha
