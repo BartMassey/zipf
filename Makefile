@@ -1,13 +1,27 @@
-CXX=g++
-CXXFLAGS=-Wall -g
+CXX = g++
+CXXFLAGS = -Wall -g
 
-zipf-graphical: zipf-graphical.o
-	$(CXX) $(CXXFLAGS) zipf-graphical.o -o zipf-graphical \
-           `pkg-config --cflags --libs plplotd-c++` -lpthread
+TARGETS = zipf-cc zipf-cc-graphical zipf-hs
 
-zipf-graphical.o: zipf-graphical.cc
-	$(CXX) $(CXXFLAGS) -c `pkg-config --cflags plplotd-c++` \
-	  zipf-graphical.cc
+all: $(TARGETS)
+
+zipf-cc: zipf-cc.o
+	$(CXX) $(CXXFLAGS) -o zipf-cc zipf-cc.o
+
+zipf-cc.o: zipf.cc
+	$(CXX) $(CXXFLAGS) -c -o zipf-cc.o zipf.cc
+
+zipf-cc-graphical: zipf-cc-graphical.o
+	$(CXX) $(CXXFLAGS) zipf-cc-graphical.o -o zipf-cc-graphical \
+           `pkg-config --cflags --libs plplot-c++ plplot` -lpthread
+
+zipf-cc-graphical.o: zipf-graphical.cc
+	$(CXX) $(CXXFLAGS) -c -o zipf-cc-graphical.o \
+	`pkg-config --cflags plplot-c++ plplot` \
+	zipf-graphical.cc
+
+zipf-hs: zipf.hs
+	ghc --make -o zipf-hs zipf.hs
 
 clean:
-	-rm -f zipf-graphical zipf-graphical.o
+	-rm -f *.o *.hi $(TARGETS)
