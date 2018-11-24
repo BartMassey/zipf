@@ -92,9 +92,9 @@ show_freqs(string filename)
 }
 
 int
-main (int argc, const char **argv)
+main (int argc, char **argv)
 {
-    plsdev("xwin");
+    plsdev("xcairo");
     if (argc < 1) {
 	fprintf(stderr, "requires file argument");
 	exit(1);
