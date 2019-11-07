@@ -10,7 +10,8 @@ The included sample text file `swift.txt` is "Tom Swift And
 His Electric Runabout" from Project Gutenberg, although the
 attribution has been stripped out for the sake of the
 analysis. There is also a file `eztest.txt` for checking
-that the software is working correctly.
+that the software is working correctly, and a random word
+generator `randtest.py` for generating comparison files.
 
 ## Build and Run
 

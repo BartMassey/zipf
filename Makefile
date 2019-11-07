@@ -24,4 +24,4 @@ zipf-hs: zipf.hs
 	ghc --make -o zipf-hs zipf.hs
 
 clean:
-	-rm -f *.o *.hi $(TARGETS)
+	-rm -f *.o *.hi $(TARGETS) randtest.txt
